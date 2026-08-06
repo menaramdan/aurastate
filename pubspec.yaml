@@ -13,6 +13,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.1
+  go_router: ^17.4.0
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +32,4 @@ flutter_launcher_icons:
   image_path: "assets/icons/app_icon.png"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "assets/icons/app_icon.png"
+  
