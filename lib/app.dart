@@ -10,6 +10,7 @@ class AuraState extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRouter.approuter,
       title: 'AuraState',
+      debugShowCheckedModeBanner: false,
     );
   }
 }
