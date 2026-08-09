@@ -33,13 +33,11 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // المدة زودناها من 1600 لـ 3000 ملي ثانية عشان الحركة تبقى أبطأ وأهدى
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3000),
     );
 
-    // الصورة تظهر بهدوء في أول 55% من الوقت
     _imageOpacity = CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
@@ -52,7 +50,6 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    // النص يبدأ يظهر بعد الصورة بشوية وبتدرج أبطأ
     _textOpacity = CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.45, 0.85, curve: Curves.easeIn),
@@ -66,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen>
           ),
         );
 
-    // البروجرس بار يظهر في آخر جزء من الأنيميشن
     _progressOpacity = CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.8, 1.0, curve: Curves.easeIn),
@@ -82,11 +78,9 @@ class _SplashScreenState extends State<SplashScreen>
       }
     });
 
-    // الانتقال التلقائي للصفحة اللي بعديها باستخدام GoRouter
-    // بعد الأنيميشن (3000) + وقت شكلي إن الـ progress bar شغال (~2000)
     Future.delayed(const Duration(milliseconds: 5000), () {
       if (mounted) {
-        context.go(AppRoutes.loginScreen);
+        context.go(AppRoutes.onBoardingScreen);
       }
     });
   }

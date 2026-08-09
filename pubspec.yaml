@@ -15,6 +15,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   go_router: ^17.4.0
   linear_progress_bar: ^3.0.0
+  smooth_page_indicator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
