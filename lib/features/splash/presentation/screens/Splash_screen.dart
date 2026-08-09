@@ -1,10 +1,154 @@
+import 'package:aurastate/core/app_assets/app_images.dart';
+import 'package:aurastate/core/constants/text.dart';
+import 'package:aurastate/core/responsive/responsive_extensions.dart';
+import 'package:aurastate/core/routes/app_routes.dart';
+import 'package:aurastate/core/styles/app_colors.dart';
+import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/features/splash/presentation/widgets/splash_screen_widget/CustomLinearProgressIndicator.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  late final Animation<double> _imageOpacity;
+  late final Animation<double> _imageScale;
+
+  late final Animation<double> _textOpacity;
+  late final Animation<Offset> _textSlide;
+
+  late final Animation<double> _progressOpacity;
+
+  bool _startProgress = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // المدة زودناها من 1600 لـ 3000 ملي ثانية عشان الحركة تبقى أبطأ وأهدى
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    );
+
+    // الصورة تظهر بهدوء في أول 55% من الوقت
+    _imageOpacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+    );
+
+    _imageScale = Tween<double>(begin: 0.7, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.55, curve: Curves.easeOutBack),
+      ),
+    );
+
+    // النص يبدأ يظهر بعد الصورة بشوية وبتدرج أبطأ
+    _textOpacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.45, 0.85, curve: Curves.easeIn),
+    );
+
+    _textSlide = Tween<Offset>(begin: const Offset(0, 0.4), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.45, 0.85, curve: Curves.easeOutCubic),
+          ),
+        );
+
+    // البروجرس بار يظهر في آخر جزء من الأنيميشن
+    _progressOpacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.8, 1.0, curve: Curves.easeIn),
+    );
+
+    _controller.forward();
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed && !_startProgress) {
+        setState(() {
+          _startProgress = true;
+        });
+      }
+    });
+
+    // الانتقال التلقائي للصفحة اللي بعديها باستخدام GoRouter
+    // بعد الأنيميشن (3000) + وقت شكلي إن الـ progress bar شغال (~2000)
+    Future.delayed(const Duration(milliseconds: 5000), () {
+      if (mounted) {
+        context.go(AppRoutes.loginScreen);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Opacity(
+                  opacity: _imageOpacity.value,
+                  child: Transform.scale(
+                    scale: _imageScale.value,
+                    child: Image.asset(
+                      AppImages.aurastate,
+                      width: 192.w,
+                      height: 192.h,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
+
+                Opacity(
+                  opacity: _textOpacity.value,
+                  child: SlideTransition(
+                    position: _textSlide,
+                    child: Text(
+                      AppText.textoflogo,
+                      style: AppTextStyle.intersemibold12.copyWith(
+                        color: AppColors.gray2,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 300.h),
+
+                Opacity(
+                  opacity: _progressOpacity.value,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 145.p),
+                    child: _startProgress
+                        ? const CustomLinearProgressIndicator()
+                        : const SizedBox(height: 4),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }

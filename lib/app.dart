@@ -1,5 +1,6 @@
 import 'package:aurastate/core/responsive/responsive_config.dart';
 import 'package:aurastate/core/routes/router.dart';
+import 'package:aurastate/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class AuraState extends StatelessWidget {
@@ -11,6 +12,8 @@ class AuraState extends StatelessWidget {
       routerConfig: AppRouter.approuter,
       title: 'AuraState',
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
     );
   }
 }
