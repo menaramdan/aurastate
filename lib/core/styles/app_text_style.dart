@@ -32,6 +32,13 @@ abstract class AppTextStyle {
     height: 28 / 12,
   );
 
+   static final intersemibold20 = TextStyle(
+    fontFamily: familyInter,
+    fontSize: 20.fs,
+    fontWeight: FontWeight.w600,
+    height: 28 / 20,
+  );
+
   static final interMedium12 = TextStyle(
     fontFamily: familyInter,
     fontSize: 12.fs,

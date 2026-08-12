@@ -1,30 +1,30 @@
-import 'package:aurastate/core/app_assets/app_icons.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class OnboardingPageViewItem extends StatefulWidget {
-  const OnboardingPageViewItem({
+class OnboardingPageViewItem2 extends StatefulWidget {
+  const OnboardingPageViewItem2(this.svgpicture, {
     super.key,
     required Image image,
     required this.describe,
     required this.textbutton,
+    required this.title,
   }) : _image = image;
 
   final Image _image;
-  
+  final String title;
   final String describe;
   final String textbutton;
+  final Widget? svgpicture;
 
   @override
-  State<OnboardingPageViewItem> createState() =>
+  State<OnboardingPageViewItem2> createState() =>
       _OnboardingPageViewItemState();
 }
 
-class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
+class _OnboardingPageViewItemState extends State<OnboardingPageViewItem2>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _floatAnimation;
@@ -69,38 +69,17 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
             },
             child: widget._image,
           ),
-          SizedBox(height: 40.h),
-          Text.rich(
-  TextSpan(
-    children: [
-      TextSpan(
-        text: 'Find Your\n',
-        style: AppTextStyle.playerDisplaybold32.copyWith(color: AppColors.primarycolor1)
-      ),
-      TextSpan(
-        text: 'Dream Home',
-        style: TextStyle(
-          fontFamily: 'PlayfairDisplay',
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w600,
-          fontSize: 28,
-          color: AppColors.primarycolor3,
-          height: 1.3,
-        ),
-      ),
-    ],
-  ),
-  
-),
+          SizedBox(height:90.h),
+        Text(widget.title , style: AppTextStyle.playerDisplaybold32.copyWith(color: AppColors.primarycolor1),),
           const SizedBox(height: 16),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 43.p),
+            padding:  EdgeInsets.symmetric(horizontal: 52.p),
             child: Text(widget.describe, style: AppTextStyle.interRegular18.copyWith(color: AppColors.primarycolor4),textAlign: TextAlign.center,),
           ),
           SizedBox(height: 40.h),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal:40.p),
-            child: CustomButtonApp(text: widget.textbutton, svgPicture: SvgPicture.asset(AppIcons.arrow), onPressed: (){},),
+            child: CustomButtonApp(text: widget.textbutton, svgPicture: widget.svgpicture , onPressed: (){},),
           ),
         ],
       ),
