@@ -11,11 +11,11 @@ class OnboardingPageViewItem extends StatefulWidget {
     super.key,
     required Image image,
     required this.describe,
-    required this.textbutton,
+    required this.textbutton, required this.onPressed,
   }) : _image = image;
 
   final Image _image;
-  
+  final void Function() onPressed;
   final String describe;
   final String textbutton;
 
@@ -100,7 +100,7 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
           SizedBox(height: 40.h),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal:40.p),
-            child: CustomButtonApp(text: widget.textbutton, svgPicture: SvgPicture.asset(AppIcons.arrow), onPressed: (){},),
+            child: CustomButtonApp(text: widget.textbutton, svgPicture: SvgPicture.asset(AppIcons.arrow), onPressed:widget.onPressed ,),
           ),
         ],
       ),

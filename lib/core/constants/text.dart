@@ -4,5 +4,10 @@ abstract class AppText {
   static final String next = 'Next';
   static final String titleonboarding = 'Exclusive Portfolio';
     static final String secureOwnership = 'Secure Ownership';
-static final String getStarted = 'GET STARTED';
+    static final String getStarted = 'GET STARTED';
+    static final String refinedLiving = 'Refined Living';
+static final String startsHere = 'Starts Here';
+static final String login = 'login';
+
+static final String createAccount = 'Create Account';
 }

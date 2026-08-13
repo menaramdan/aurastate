@@ -11,6 +11,7 @@ class OnboardingPageViewItem2 extends StatefulWidget {
     required this.describe,
     required this.textbutton,
     required this.title,
+    required this.onPressed
   }) : _image = image;
 
   final Image _image;
@@ -18,6 +19,7 @@ class OnboardingPageViewItem2 extends StatefulWidget {
   final String describe;
   final String textbutton;
   final Widget? svgpicture;
+final void Function() onPressed;
 
   @override
   State<OnboardingPageViewItem2> createState() =>
@@ -79,7 +81,8 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem2>
           SizedBox(height: 40.h),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal:40.p),
-            child: CustomButtonApp(text: widget.textbutton, svgPicture: widget.svgpicture , onPressed: (){},),
+            child: CustomButtonApp(text: widget.textbutton, svgPicture: widget.svgpicture , onPressed:widget.onPressed,
+            ),
           ),
         ],
       ),
