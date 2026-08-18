@@ -1,11 +1,13 @@
 import 'package:aurastate/core/app_assets/app_images.dart';
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
+import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/splash/presentation/widgets/welcome_screen_widgets/Create_Account_Button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreenBody extends StatefulWidget {
   const WelcomeScreenBody({super.key});
@@ -91,10 +93,7 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
   }
 
   Animation<Offset> _slideUp(double start, double end, {double offset = 0.15}) {
-    return Tween<Offset>(
-      begin: Offset(0, offset),
-      end: Offset.zero,
-    ).animate(
+    return Tween<Offset>(begin: Offset(0, offset), end: Offset.zero).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(start, end, curve: Curves.easeOutCubic),
@@ -141,8 +140,9 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
                     position: _titleSlide,
                     child: Text(
                       "${AppText.refinedLiving}\n${AppText.startsHere}",
-                      style: AppTextStyle.playerDisplaybold32
-                          .copyWith(color: AppColors.primarycolor1),
+                      style: AppTextStyle.playerDisplaybold32.copyWith(
+                        color: AppColors.primarycolor1,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -157,8 +157,9 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
                     child: Text(
                       'Discover a curated collection of the\n'
                       "world's most prestigious estates.",
-                      style: AppTextStyle.interRegular18
-                          .copyWith(color: AppColors.primarycolor2),
+                      style: AppTextStyle.interRegular18.copyWith(
+                        color: AppColors.primarycolor2,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -174,7 +175,9 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
                       padding: EdgeInsets.symmetric(horizontal: 24.p),
                       child: CustomButtonApp(
                         text: AppText.login,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(AppRoutes.loginScreen);
+                        },
                       ),
                     ),
                   ),
@@ -188,7 +191,11 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
                     position: _createBtnSlide,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.p),
-                      child: CreateAccountButton(onPressed: () {}),
+                      child: CreateAccountButton(
+                        onPressed: () {
+                          context.push(AppRoutes.signupScreen);
+                        },
+                      ),
                     ),
                   ),
                 ),

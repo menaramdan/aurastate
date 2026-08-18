@@ -3,4 +3,6 @@ abstract class AppRoutes {
   static const String onBoardingScreen = '/onboardingscreen';
   static const String welcomScreen = '/welcomScreen';
   static const String loginScreen = '/loginscreen';
+  static const String signupScreen = '/signupScreen';
+  
 }
