@@ -12,4 +12,6 @@ abstract class AppText {
   static final String welcomeBack = 'Welcome Back';
   static final String email = 'EMAIL ADDRESS';
   static final String password = 'PASSWORD';
+  static final String emailaddress = 'e.g. julian.vance@prestige.com';
+  static final String passwordtext = '••••••••';
 }

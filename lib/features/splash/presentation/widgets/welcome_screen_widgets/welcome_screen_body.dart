@@ -178,6 +178,7 @@ class _WelcomeScreenBodyState extends State<WelcomeScreenBody>
                         onPressed: () {
                           context.push(AppRoutes.loginScreen);
                         },
+                        borderRadius: BorderRadiusGeometry.circular(12),
                       ),
                     ),
                   ),

@@ -11,7 +11,8 @@ class OnboardingPageViewItem extends StatefulWidget {
     super.key,
     required Image image,
     required this.describe,
-    required this.textbutton, required this.onPressed,
+    required this.textbutton,
+    required this.onPressed,
   }) : _image = image;
 
   final Image _image;
@@ -20,8 +21,7 @@ class OnboardingPageViewItem extends StatefulWidget {
   final String textbutton;
 
   @override
-  State<OnboardingPageViewItem> createState() =>
-      _OnboardingPageViewItemState();
+  State<OnboardingPageViewItem> createState() => _OnboardingPageViewItemState();
 }
 
 class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
@@ -36,16 +36,11 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2800),
-    )..repeat(reverse: true); 
+    )..repeat(reverse: true);
     _floatAnimation = Tween<double>(
       begin: -8.0,
       end: 8.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut, 
-      ),
-    );
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -71,36 +66,48 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem>
           ),
           SizedBox(height: 40.h),
           Text.rich(
-  TextSpan(
-    children: [
-      TextSpan(
-        text: 'Find Your\n',
-        style: AppTextStyle.playerDisplaybold32.copyWith(color: AppColors.primarycolor1)
-      ),
-      TextSpan(
-        text: 'Dream Home',
-        style: TextStyle(
-          fontFamily: 'PlayfairDisplay',
-          fontStyle: FontStyle.italic,
-          fontWeight: FontWeight.w600,
-          fontSize: 28,
-          color: AppColors.primarycolor3,
-          height: 1.3,
-        ),
-      ),
-    ],
-  ),
-  
-),
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Find Your\n',
+                  style: AppTextStyle.playerDisplaybold32.copyWith(
+                    color: AppColors.primarycolor1,
+                  ),
+                ),
+                TextSpan(
+                  text: 'Dream Home',
+                  style: TextStyle(
+                    fontFamily: 'PlayfairDisplay',
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 28,
+                    color: AppColors.primarycolor3,
+                    height: 1.3,
+                  ),
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 16),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 43.p),
-            child: Text(widget.describe, style: AppTextStyle.interRegular18.copyWith(color: AppColors.primarycolor4),textAlign: TextAlign.center,),
+            padding: EdgeInsets.symmetric(horizontal: 43.p),
+            child: Text(
+              widget.describe,
+              style: AppTextStyle.interRegular18.copyWith(
+                color: AppColors.primarycolor4,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(height: 40.h),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal:40.p),
-            child: CustomButtonApp(text: widget.textbutton, svgPicture: SvgPicture.asset(AppIcons.arrow), onPressed:widget.onPressed ,),
+            padding: EdgeInsets.symmetric(horizontal: 40.p),
+            child: CustomButtonApp(
+              text: widget.textbutton,
+              svgPicture: SvgPicture.asset(AppIcons.arrow),
+              onPressed: widget.onPressed,
+              borderRadius: BorderRadiusGeometry.circular(12),
+            ),
           ),
         ],
       ),
