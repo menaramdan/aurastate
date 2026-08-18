@@ -5,4 +5,6 @@ abstract class AppIcons {
   static final String lock = 'assets/svg/lock.svg';
   static final String person = 'assets/svg/person.svg';
   static final String phone = 'assets/svg/phone.svg';
+  static final String googleicon = 'assets/svg/google_icon.svg';
+  static final String facebookicon = 'assets/svg/facebook_icon.svg';
 }

@@ -16,4 +16,6 @@ abstract class AppColors {
   static const sandBeige = Color(0xffD1C5B4);
   static const mushroomBrown = Color(0xff9A8F80);
   static const white = Color(0xffF8F9FA);
+  static const darkcolor = Color(0xff0B1C30);
+  static const coolLightGray = Color(0xffC5C6CF);
 }
