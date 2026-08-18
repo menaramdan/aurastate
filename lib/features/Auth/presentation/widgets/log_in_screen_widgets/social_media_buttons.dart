@@ -1,6 +1,6 @@
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
-import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/social_Media.dart';
 import 'package:flutter/material.dart';
 
 class SocialMediaButtons extends StatelessWidget {
@@ -15,27 +15,16 @@ class SocialMediaButtons extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return OutlinedButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.white,
-        elevation: 0,
-        padding: EdgeInsets.symmetric(horizontal: 44.p, vertical: 12.p),
+      style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 40.p, vertical: 18.p),
         side: BorderSide(color: AppColors.coolLightGray),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      child: Row(
-        children: [
-          icon,
-          SizedBox(width: 11),
-          Text(
-            text,
-            style: AppTextStyle.intersemibold12.copyWith(
-              color: AppColors.darkcolor,
-            ),
-          ),
-        ],
-      ),
+      child: SocialMedia(icon: icon, text: text),
     );
   }
 }

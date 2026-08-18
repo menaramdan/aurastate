@@ -5,7 +5,9 @@ import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/PasswordAndForgetPassword.dart';
+import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/asking_for_account.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
+import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/social_media_buttons.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/text_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -87,6 +89,24 @@ class _LoginBodyState extends State<LoginBody> {
               ),
               SizedBox(height: 24),
               TextDriver(),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialMediaButtons(
+                    icon: SvgPicture.asset(AppIcons.googleicon),
+                    text: AppText.google,
+                  ),
+                  SizedBox(width: 16),
+                  SocialMediaButtons(
+                    icon: SvgPicture.asset(AppIcons.facebookicon),
+                    text: AppText.facebook,
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 24),
+              AskingForAccount(),
             ],
           ),
         ),

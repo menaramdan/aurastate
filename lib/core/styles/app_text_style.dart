@@ -24,6 +24,12 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w400,
     height: 24 / 16,
   );
+  static final interRegular14 = TextStyle(
+    fontFamily: familyInter,
+    fontSize: 14.fs,
+    fontWeight: FontWeight.w400,
+    height: 20 / 14,
+  );
 
   static final intersemibold12 = TextStyle(
     fontFamily: familyInter,
@@ -32,7 +38,7 @@ abstract class AppTextStyle {
     height: 28 / 12,
   );
 
-   static final intersemibold20 = TextStyle(
+  static final intersemibold20 = TextStyle(
     fontFamily: familyInter,
     fontSize: 20.fs,
     fontWeight: FontWeight.w600,
@@ -79,5 +85,12 @@ abstract class AppTextStyle {
     fontSize: 24.fs,
     fontWeight: FontWeight.w700,
     height: 32 / 24,
+  );
+
+  static final intersemibold16 = TextStyle(
+    fontFamily: familyInter,
+    fontSize: 16.fs,
+    fontWeight: FontWeight.w700,
+    height: 16 / 16,
   );
 }
