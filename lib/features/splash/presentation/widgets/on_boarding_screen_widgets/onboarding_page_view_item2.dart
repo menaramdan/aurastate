@@ -89,6 +89,7 @@ class _OnboardingPageViewItemState extends State<OnboardingPageViewItem2>
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 40.p),
             child: CustomButtonApp(
+              height: 56.h,
               text: widget.textbutton,
               svgPicture: widget.svgpicture,
               onPressed: widget.onPressed,

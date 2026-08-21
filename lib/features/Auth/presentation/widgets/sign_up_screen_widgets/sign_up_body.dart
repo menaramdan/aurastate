@@ -24,34 +24,43 @@ class _SignUpBodyState extends State<SignUpBody> {
   final TextEditingController phonecontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   @override
+  void dispose() {
+    namecontroller.dispose();
+    emailcontroller.dispose();
+    phonecontroller.dispose();
+    passwordcontroller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24.p),
+      // padding: EdgeInsets.symmetric(horizontal: 24.p),
       physics: ClampingScrollPhysics(),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            73.verticalSpace,
-            Text(
-              AppText.joinAuraEstate,
-              style: AppTextStyle.playerDisplaybold32.copyWith(
-                color: AppColors.primarycolor1,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.p),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              73.verticalSpace,
+              Text(
+                AppText.joinAuraEstate,
+                style: AppTextStyle.playerDisplaybold32.copyWith(
+                  color: AppColors.primarycolor1,
+                ),
               ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              'Elevate your lifestyle with exclusive\nproperties.',
-              style: AppTextStyle.interRegular16.copyWith(
-                color: AppColors.primarycolor2,
+              SizedBox(height: 4),
+              Text(
+                'Elevate your lifestyle with exclusive\nproperties.',
+                style: AppTextStyle.interRegular16.copyWith(
+                  color: AppColors.primarycolor2,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsetsDirectional.only(start: 24.p),
-              child: Align(
-                alignment: AlignmentGeometry.centerStart,
+              SizedBox(height: 24),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   AppText.fULLNAME,
                   style: AppTextStyle.intersemibold122.copyWith(
@@ -59,22 +68,19 @@ class _SignUpBodyState extends State<SignUpBody> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 4),
-            CustomTextField(
-              controller: namecontroller,
-              keyboardkey: TextInputType.text,
-              text: 'John Doe',
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(16),
-                child: SvgPicture.asset(AppImages.person),
+              SizedBox(height: 4),
+              CustomTextField(
+                controller: namecontroller,
+                keyboardkey: TextInputType.text,
+                text: 'John Doe',
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SvgPicture.asset(AppImages.person),
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsetsDirectional.only(start: 24.p),
-              child: Align(
-                alignment: AlignmentGeometry.centerStart,
+              SizedBox(height: 16),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   AppText.email,
                   style: AppTextStyle.intersemibold122.copyWith(
@@ -82,22 +88,19 @@ class _SignUpBodyState extends State<SignUpBody> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 4),
-            CustomTextField(
-              controller: emailcontroller,
-              keyboardkey: TextInputType.emailAddress,
-              text: 'john@example.com',
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(16),
-                child: SvgPicture.asset(AppIcons.emailicon),
+              SizedBox(height: 4),
+              CustomTextField(
+                controller: emailcontroller,
+                keyboardkey: TextInputType.emailAddress,
+                text: 'john@example.com',
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SvgPicture.asset(AppIcons.emailicon),
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsetsDirectional.only(start: 24.p),
-              child: Align(
-                alignment: AlignmentGeometry.centerStart,
+              SizedBox(height: 16),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   AppText.phone,
                   style: AppTextStyle.intersemibold122.copyWith(
@@ -105,22 +108,19 @@ class _SignUpBodyState extends State<SignUpBody> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 4),
-            CustomTextField(
-              controller: phonecontroller,
-              keyboardkey: TextInputType.phone,
-              text: '+1 (555) 000-0000',
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(16),
-                child: SvgPicture.asset(AppIcons.phone),
+              SizedBox(height: 4),
+              CustomTextField(
+                controller: phonecontroller,
+                keyboardkey: TextInputType.phone,
+                text: '+1 (555) 000-0000',
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SvgPicture.asset(AppIcons.phone),
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsetsDirectional.only(start: 24.p),
-              child: Align(
-                alignment: AlignmentGeometry.centerStart,
+              SizedBox(height: 16),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   AppText.password,
                   style: AppTextStyle.intersemibold122.copyWith(
@@ -128,30 +128,34 @@ class _SignUpBodyState extends State<SignUpBody> {
                   ),
                 ),
               ),
-            ),
-            CustomTextField(
-              controller: passwordcontroller,
-              keyboardkey: TextInputType.visiblePassword,
-              text: AppText.passwordtext,
-              prefixIcon: const Icon(Icons.lock_outline, size: 24),
-            ),
-            SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsetsDirectional.only(start: 24.p),
-              child: TermsAndPrivacyCheckbox(
-                value: true,
-                onChanged: (bool? value) {},
+              CustomTextField(
+                controller: passwordcontroller,
+                keyboardkey: TextInputType.visiblePassword,
+                text: AppText.passwordtext,
+                prefixIcon: const Icon(Icons.lock_outline, size: 24),
               ),
-            ),
-            SizedBox(height: 24),
-            CustomButtonApp(
-              text: AppText.register,
-              onPressed: () {},
-              borderRadius: BorderRadiusGeometry.circular(60),
-            ),
-            SizedBox(height: 24),
-            AlreadyHaveAnAccount(),
-          ],
+              SizedBox(height: 24),
+              Padding(
+                padding: EdgeInsetsDirectional.only(start: 24.p),
+                child: TermsAndPrivacyCheckbox(
+                  value: true,
+                  onChanged: (bool? value) {},
+                ),
+              ),
+              SizedBox(height: 24),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.p),
+                child: CustomButtonApp(
+                  text: AppText.register,
+                  onPressed: () {},
+                  borderRadius: BorderRadiusGeometry.circular(60),
+                ),
+              ),
+              SizedBox(height: 24),
+              AlreadyHaveAnAccount(),
+              30.verticalSpace,
+            ],
+          ),
         ),
       ),
     );

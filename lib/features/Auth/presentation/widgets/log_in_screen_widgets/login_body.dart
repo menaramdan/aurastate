@@ -28,32 +28,31 @@ class _LoginBodyState extends State<LoginBody> {
     return Form(
       key: _formkey,
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24.p),
         physics: ClampingScrollPhysics(),
         child: Center(
-          child: Column(
-            children: [
-              116.verticalSpace,
-              Text(
-                AppText.welcomeBack,
-                style: AppTextStyle.playerDisplaybold32.copyWith(
-                  color: AppColors.primarycolor1,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.p),
+            child: Column(
+              children: [
+                116.verticalSpace,
+                Text(
+                  AppText.welcomeBack,
+                  style: AppTextStyle.playerDisplaybold32.copyWith(
+                    color: AppColors.primarycolor1,
+                  ),
                 ),
-              ),
-              Text(
-                'Continue your journey in luxury real\n'
-                'estate and exclusive property\n'
-                'management.',
-                textAlign: TextAlign.center,
-                style: AppTextStyle.interRegular16.copyWith(
-                  color: AppColors.gray2,
+                Text(
+                  'Continue your journey in luxury real\n'
+                  'estate and exclusive property\n'
+                  'management.',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.interRegular16.copyWith(
+                    color: AppColors.gray2,
+                  ),
                 ),
-              ),
-              SizedBox(height: 24),
-              Padding(
-                padding: EdgeInsetsDirectional.only(start: 24.p),
-                child: Align(
-                  alignment: AlignmentGeometry.centerStart,
+                SizedBox(height: 24),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     AppText.email,
                     style: AppTextStyle.intersemibold12.copyWith(
@@ -61,53 +60,53 @@ class _LoginBodyState extends State<LoginBody> {
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 4),
-              CustomTextField(
-                controller: emailcontroller,
-                keyboardkey: TextInputType.emailAddress,
-                text: AppText.emailaddress,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SvgPicture.asset(AppIcons.emailicon),
+                SizedBox(height: 4),
+                CustomTextField(
+                  controller: emailcontroller,
+                  keyboardkey: TextInputType.emailAddress,
+                  text: AppText.emailaddress,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SvgPicture.asset(AppIcons.emailicon),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16),
-              PasswordAndForgetPassword(),
+                SizedBox(height: 16),
+                PasswordAndForgetPassword(),
 
-              CustomTextField(
-                controller: passwordcontroller,
-                keyboardkey: TextInputType.visiblePassword,
-                text: AppText.passwordtext,
-                prefixIcon: const Icon(Icons.lock_outline, size: 24),
-              ),
-              SizedBox(height: 16),
-              CustomButtonApp(
-                text: AppText.login,
-                onPressed: () {},
-                borderRadius: BorderRadiusGeometry.circular(60),
-              ),
-              SizedBox(height: 24),
-              TextDriver(),
-              SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SocialMediaButtons(
-                    icon: SvgPicture.asset(AppIcons.googleicon),
-                    text: AppText.google,
-                  ),
-                  SizedBox(width: 16),
-                  SocialMediaButtons(
-                    icon: SvgPicture.asset(AppIcons.facebookicon),
-                    text: AppText.facebook,
-                  ),
-                ],
-              ),
+                CustomTextField(
+                  controller: passwordcontroller,
+                  keyboardkey: TextInputType.visiblePassword,
+                  text: AppText.passwordtext,
+                  prefixIcon: const Icon(Icons.lock_outline, size: 24),
+                ),
+                SizedBox(height: 16),
+                CustomButtonApp(
+                  text: AppText.login,
+                  onPressed: () {},
+                  borderRadius: BorderRadiusGeometry.circular(60),
+                ),
+                SizedBox(height: 24),
+                TextDriver(),
+                SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SocialMediaButtons(
+                      icon: SvgPicture.asset(AppIcons.googleicon),
+                      text: AppText.google,
+                    ),
+                    SizedBox(width: 16),
+                    SocialMediaButtons(
+                      icon: SvgPicture.asset(AppIcons.facebookicon),
+                      text: AppText.facebook,
+                    ),
+                  ],
+                ),
 
-              SizedBox(height: 24),
-              AskingForAccount(),
-            ],
+                SizedBox(height: 24),
+                AskingForAccount(),
+              ],
+            ),
           ),
         ),
       ),

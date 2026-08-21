@@ -20,4 +20,6 @@ abstract class AppText {
   static final String fULLNAME = 'FULL NAME';
   static final String phone = 'PHONE NUMBER';
   static final String register = 'SIGN UP';
+  static final String forgotPassword = 'Forgot Password?';
+  static final String sendLink = 'Send Link';
 }

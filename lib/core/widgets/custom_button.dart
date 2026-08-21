@@ -10,16 +10,18 @@ class CustomButtonApp extends StatelessWidget {
     this.svgPicture,
     required this.onPressed,
     required this.borderRadius,
+    this.height,
   });
   final void Function() onPressed;
   final String text;
   final Widget? svgPicture;
   final BorderRadiusGeometry borderRadius;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 48.h,
+      height: height ?? 48.h,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

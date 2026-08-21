@@ -1,8 +1,9 @@
 import 'package:aurastate/core/constants/text.dart';
-import 'package:aurastate/core/responsive/responsive_extensions.dart';
+import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PasswordAndForgetPassword extends StatelessWidget {
   const PasswordAndForgetPassword({super.key});
@@ -12,23 +13,25 @@ class PasswordAndForgetPassword extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: 24.p),
-          child: Align(
-            alignment: AlignmentGeometry.centerStart,
-            child: Text(
-              AppText.password,
-              style: AppTextStyle.intersemibold12.copyWith(
-                color: AppColors.primarycolor2,
-              ),
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: Text(
+            AppText.password,
+            style: AppTextStyle.intersemibold12.copyWith(
+              color: AppColors.primarycolor2,
             ),
           ),
         ),
 
-        Text(
-          'Forgot Password?',
-          style: AppTextStyle.interMedium12.copyWith(
-            color: AppColors.primarycolor1,
+        GestureDetector(
+          onTap: () {
+            context.push(AppRoutes.forgetpassword);
+          },
+          child: Text(
+            'Forgot Password?',
+            style: AppTextStyle.interMedium12.copyWith(
+              color: AppColors.primarycolor1,
+            ),
           ),
         ),
       ],
