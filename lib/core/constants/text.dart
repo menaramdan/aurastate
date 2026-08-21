@@ -16,4 +16,8 @@ abstract class AppText {
   static final String passwordtext = '••••••••';
   static final String google = 'Google';
   static final String facebook = 'facebook';
+  static final String joinAuraEstate = 'Join Aura Estate';
+  static final String fULLNAME = 'FULL NAME';
+  static final String phone = 'PHONE NUMBER';
+  static final String register = 'SIGN UP';
 }

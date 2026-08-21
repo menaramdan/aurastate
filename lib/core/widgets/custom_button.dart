@@ -1,3 +1,4 @@
+import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class CustomButtonApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: 48.h,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -30,7 +31,7 @@ class CustomButtonApp extends StatelessWidget {
           children: [
             Text(
               text,
-              style: AppTextStyle.intersemibold20.copyWith(color: Colors.white),
+              style: AppTextStyle.interRegular14.copyWith(color: Colors.white),
               textAlign: TextAlign.center,
             ),
             SizedBox(width: 8),

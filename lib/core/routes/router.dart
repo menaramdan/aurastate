@@ -54,10 +54,32 @@ abstract class AppRouter {
         path: AppRoutes.welcomScreen,
         builder: (context, state) => const WelcomeScreen(),
       ),
-
       GoRoute(
         path: AppRoutes.signupScreen,
-        builder: (context, state) => const SignUpScreen(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const SignUpScreen(),
+            transitionDuration: const Duration(milliseconds: 500),
+            reverseTransitionDuration: const Duration(milliseconds: 400),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(0.0, 1.0);
+                  const end = Offset.zero;
+                  const curve = Curves.easeOutCubic;
+
+                  final tween = Tween(
+                    begin: begin,
+                    end: end,
+                  ).chain(CurveTween(curve: curve));
+
+                  return SlideTransition(
+                    position: animation.drive(tween),
+                    child: FadeTransition(opacity: animation, child: child),
+                  );
+                },
+          );
+        },
       ),
     ],
   );

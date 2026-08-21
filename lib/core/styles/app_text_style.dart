@@ -76,7 +76,7 @@ abstract class AppTextStyle {
   static final intersemibold122 = TextStyle(
     fontFamily: familyInter,
     fontSize: 12.fs,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
     height: 16 / 12,
   );
 
@@ -92,5 +92,11 @@ abstract class AppTextStyle {
     fontSize: 16.fs,
     fontWeight: FontWeight.w700,
     height: 16 / 16,
+  );
+  static final interbold16 = TextStyle(
+    fontFamily: familyInter,
+    fontSize: 16.fs,
+    fontWeight: FontWeight.w900,
+    height: 24 / 16,
   );
 }
