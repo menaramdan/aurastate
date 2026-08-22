@@ -1,11 +1,13 @@
 import 'package:aurastate/core/app_assets/app_images.dart';
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
+import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/OTP_Verification_Screen_widgets/pin_put_verfication.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OtpVerificationBody extends StatelessWidget {
   const OtpVerificationBody({super.key});
@@ -13,7 +15,7 @@ class OtpVerificationBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: 500.w),
+      constraints: BoxConstraints(maxWidth: 500.w),
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -51,7 +53,9 @@ class OtpVerificationBody extends StatelessWidget {
                 SizedBox(height: 16),
                 CustomButtonApp(
                   text: AppText.verify,
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(AppRoutes.resetPasswordScreen);
+                  },
                   borderRadius: BorderRadius.circular(8),
                 ),
                 40.verticalSpace,
