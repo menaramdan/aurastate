@@ -7,4 +7,5 @@ abstract class AppIcons {
   static final String phone = 'assets/svg/phone.svg';
   static final String googleicon = 'assets/svg/google_icon.svg';
   static final String facebookicon = 'assets/svg/facebook_icon.svg';
+  static final String icon = 'assets/svg/Icon.svg';
 }
