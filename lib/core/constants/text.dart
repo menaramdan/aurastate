@@ -25,4 +25,5 @@ abstract class AppText {
   static final String verification = 'verification';
   static final String verify = 'Verify';
   static final String resendcode = 'Resend Code';
+  static final String resetPassword = 'Reset Password';
 }

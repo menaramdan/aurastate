@@ -1,9 +1,9 @@
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/features/Auth/presentation/screens/OTP_%20Verification%20_Screen.dart';
+import 'package:aurastate/features/Auth/presentation/screens/Reset_Password_Screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/forget_password_screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/log_in_screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/sign_up_screen.dart';
-import 'package:aurastate/features/Auth/presentation/widgets/Reset_password_widgets/ResetPasswordbody.dart';
 import 'package:aurastate/features/splash/presentation/screens/Splash_screen.dart';
 import 'package:aurastate/features/splash/presentation/screens/onboarding_screen.dart';
 import 'package:aurastate/features/splash/presentation/screens/welcome_screen.dart';
@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final GoRouter approuter = GoRouter(
-    initialLocation: AppRoutes.oTPVerificationScreen,
+    initialLocation: AppRoutes.resetPasswordScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -95,7 +95,7 @@ abstract class AppRouter {
 
       GoRoute(
         path: AppRoutes.resetPasswordScreen,
-        builder: (context, state) => const Resetpasswordbody(),
+        builder: (context, state) => const ResetPasswordScreen(),
       ),
     ],
   );
