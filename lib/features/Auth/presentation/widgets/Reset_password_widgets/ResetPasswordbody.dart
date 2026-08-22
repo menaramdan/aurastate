@@ -13,12 +13,51 @@ class Resetpasswordbody extends StatefulWidget {
   State<Resetpasswordbody> createState() => _ResetpasswordbodyState();
 }
 
-class _ResetpasswordbodyState extends State<Resetpasswordbody> {
+class _ResetpasswordbodyState extends State<Resetpasswordbody>
+    with SingleTickerProviderStateMixin {
   final TextEditingController passwordcontroller = TextEditingController();
+
+  late final AnimationController _controller;
+  late final Animation<Offset> _slideAnimation;
+  late final Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, -1.2),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0, 0.3, curve: Curves.easeIn),
+      ),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _controller.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    passwordcontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Center(
         child: Column(
           children: [
@@ -36,10 +75,18 @@ class _ResetpasswordbodyState extends State<Resetpasswordbody> {
                 color: AppColors.colorofpinput,
               ),
             ),
-            SizedBox(height: 24),
-            UpdatePasswordCard(passwordcontroller: passwordcontroller),
+            const SizedBox(height: 24),
+            SlideTransition(
+              position: _slideAnimation,
+              child: FadeTransition(
+                opacity: _fadeAnimation,
+                child: UpdatePasswordCard(
+                  passwordcontroller: passwordcontroller,
+                ),
+              ),
+            ),
             24.verticalSpace,
-            RememberPassword(),
+            const RememberPassword(),
           ],
         ),
       ),

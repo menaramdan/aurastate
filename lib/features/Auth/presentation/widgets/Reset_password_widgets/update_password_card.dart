@@ -1,10 +1,12 @@
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
+import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class UpdatePasswordCard extends StatelessWidget {
   const UpdatePasswordCard({super.key, required this.passwordcontroller});
@@ -65,7 +67,9 @@ class UpdatePasswordCard extends StatelessWidget {
               65.verticalSpace,
               CustomButtonApp(
                 text: AppText.updatePassword,
-                onPressed: () {},
+                onPressed: () {
+                  context.go(AppRoutes.successScreen);
+                },
                 borderRadius: BorderRadius.circular(12),
               ),
             ],
