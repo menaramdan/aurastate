@@ -22,4 +22,7 @@ abstract class AppText {
   static final String register = 'SIGN UP';
   static final String forgotPassword = 'Forgot Password?';
   static final String sendLink = 'Send Link';
+  static final String verification = 'verification';
+  static final String verify = 'Verify';
+  static final String resendcode = 'Resend Code';
 }

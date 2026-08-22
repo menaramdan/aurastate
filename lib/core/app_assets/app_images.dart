@@ -8,4 +8,5 @@ abstract class AppImages {
   static final String image3 = 'assets/images/Image3.png';
   static final String person = 'assets/svg/person.svg';
   static final String phone = 'assets/svg/phone.svg';
+  static final String backgroundemail = 'assets/images/Background_email.png';
 }

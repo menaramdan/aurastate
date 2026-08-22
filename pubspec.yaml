@@ -17,6 +17,7 @@ dependencies:
   linear_progress_bar: ^3.0.0
   smooth_page_indicator: ^2.0.1
   flutter_svg: ^2.3.0
+  pinput: ^6.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:aurastate/core/routes/app_routes.dart';
+import 'package:aurastate/features/Auth/presentation/screens/OTP_%20Verification%20_Screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/forget_password_screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/log_in_screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/sign_up_screen.dart';
@@ -12,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final GoRouter approuter = GoRouter(
+    initialLocation: AppRoutes.oTPVerificationScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -86,6 +86,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutes.forgetpassword,
         builder: (context, state) => const ForgetPasswordScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.oTPVerificationScreen,
+        builder: (context, state) => const OtpverificationScreen(),
       ),
     ],
   );

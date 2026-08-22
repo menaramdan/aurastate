@@ -18,4 +18,5 @@ abstract class AppColors {
   static const white = Color(0xffF8F9FA);
   static const darkcolor = Color(0xff0B1C30);
   static const coolLightGray = Color(0xffC5C6CF);
+  static const colorofpinput = Color(0xff6B7280);
 }
