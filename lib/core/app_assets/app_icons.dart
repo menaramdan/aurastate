@@ -8,4 +8,5 @@ abstract class AppIcons {
   static final String googleicon = 'assets/svg/google_icon.svg';
   static final String facebookicon = 'assets/svg/facebook_icon.svg';
   static final String icon = 'assets/svg/Icon.svg';
+  static final String Blur = 'assets/svg/Blur.svg';
 }

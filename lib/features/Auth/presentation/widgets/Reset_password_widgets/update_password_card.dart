@@ -1,3 +1,4 @@
+import 'package:aurastate/core/app_assets/app_icons.dart';
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
@@ -6,6 +7,7 @@ import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class UpdatePasswordCard extends StatelessWidget {
@@ -71,6 +73,7 @@ class UpdatePasswordCard extends StatelessWidget {
                   context.go(AppRoutes.successScreen);
                 },
                 borderRadius: BorderRadius.circular(12),
+                svgPicture: SvgPicture.asset(AppIcons.icon, width: 16.w),
               ),
             ],
           ),

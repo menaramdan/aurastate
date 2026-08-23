@@ -29,4 +29,5 @@ abstract class AppText {
   static final String nEWPASSWORD = 'NEW PASSWORD';
   static final String cONFIRMNEWPASSWORD = 'CONFIRM NEW PASSWORD';
   static final String updatePassword = 'UPDATE PASSWORD';
+  static final String backToLogin = 'BACK TO LOGIN';
 }
