@@ -10,10 +10,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class UpdatePasswordCard extends StatelessWidget {
-  const UpdatePasswordCard({super.key, required this.passwordcontroller});
+class UpdatePasswordCard extends StatefulWidget {
+  const UpdatePasswordCard({super.key});
 
-  final TextEditingController passwordcontroller;
+  @override
+  State<UpdatePasswordCard> createState() => _UpdatePasswordCardState();
+}
+
+class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final bool isobsuretext = true;
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +53,8 @@ class UpdatePasswordCard extends StatelessWidget {
               ),
               SizedBox(height: 6),
               CustomTextField(
-                controller: passwordcontroller,
+                obsuretext: isobsuretext,
+                controller: passwordController,
                 keyboardkey: TextInputType.visiblePassword,
                 text: AppText.passwordtext,
                 prefixIcon: Icon(
@@ -58,7 +73,7 @@ class UpdatePasswordCard extends StatelessWidget {
                 ),
               ),
               CustomTextField(
-                controller: passwordcontroller,
+                controller: confirmPasswordController,
                 keyboardkey: TextInputType.visiblePassword,
                 text: AppText.passwordtext,
                 prefixIcon: Icon(

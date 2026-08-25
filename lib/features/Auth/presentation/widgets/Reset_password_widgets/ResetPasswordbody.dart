@@ -80,9 +80,7 @@ class _ResetpasswordbodyState extends State<Resetpasswordbody>
               position: _slideAnimation,
               child: FadeTransition(
                 opacity: _fadeAnimation,
-                child: UpdatePasswordCard(
-                  passwordcontroller: passwordcontroller,
-                ),
+                child: UpdatePasswordCard(),
               ),
             ),
             24.verticalSpace,

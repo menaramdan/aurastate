@@ -45,7 +45,7 @@ class SuccessScreenBody extends StatelessWidget {
             CustomButtonApp(
               text: AppText.backToLogin,
               onPressed: () {
-                context.push(AppRoutes.loginScreen);
+                context.go(AppRoutes.loginScreen);
               },
               borderRadius: BorderRadius.circular(8),
             ),
