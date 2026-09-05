@@ -21,6 +21,7 @@ class _SignUpBodyState extends State<SignUpBody> {
   final TextEditingController phonecontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   bool isPasswordVisible = false;
+  bool isChecked = false;
   @override
   void dispose() {
     namecontroller.dispose();
@@ -77,8 +78,12 @@ class _SignUpBodyState extends State<SignUpBody> {
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 24.p),
                 child: TermsAndPrivacyCheckbox(
-                  value: true,
-                  onChanged: (bool? value) {},
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value ?? true;
+                    });
+                  },
                 ),
               ),
               SizedBox(height: 24),
