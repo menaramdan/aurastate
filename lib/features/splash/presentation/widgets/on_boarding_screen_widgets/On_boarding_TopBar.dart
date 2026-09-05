@@ -1,6 +1,8 @@
+import 'package:aurastate/core/constants/constatn.dart';
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
+import 'package:aurastate/core/services/shared_prefrence.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/features/splash/presentation/widgets/on_boarding_screen_widgets/smooth_page_controller.dart';
@@ -21,7 +23,9 @@ class OnboardingTopBar extends StatelessWidget {
         children: [
           Smoothpagecontroller(pageController: pageController),
           GestureDetector(
-            onTap: () {
+            onTap: () async {
+              final prefs = SharedPreferenceService.instance;
+              await prefs.saveOnboarding(onboardingKey, true);
               context.push(AppRoutes.welcomScreen);
             },
             child: Text(

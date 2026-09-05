@@ -1,7 +1,9 @@
 import 'package:aurastate/core/app_assets/app_images.dart';
+import 'package:aurastate/core/constants/constatn.dart';
 import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
+import 'package:aurastate/core/services/shared_prefrence.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/features/splash/presentation/widgets/splash_screen_widget/CustomLinearProgressIndicator.dart';
@@ -78,9 +80,16 @@ class _SplashScreenState extends State<SplashScreen>
       }
     });
 
-    Future.delayed(const Duration(milliseconds: 5000), () {
+    Future.delayed(const Duration(milliseconds: 5000), () async {
+      final isFirstTime = await SharedPreferenceService.instance.getOnboarding(
+        onboardingKey,
+      );
       if (mounted) {
-        context.go(AppRoutes.onBoardingScreen);
+        if (isFirstTime) {
+          context.go(AppRoutes.welcomScreen);
+        } else {
+          context.go(AppRoutes.onBoardingScreen);
+        }
       }
     });
   }

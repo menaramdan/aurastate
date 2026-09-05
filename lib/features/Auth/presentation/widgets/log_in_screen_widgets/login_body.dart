@@ -3,6 +3,7 @@ import 'package:aurastate/core/constants/text.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/core/utils/app_validators.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/PasswordAndForgetPassword.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/asking_for_account.dart';
@@ -22,6 +23,7 @@ class LoginBody extends StatefulWidget {
 class _LoginBodyState extends State<LoginBody> {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
+  bool isPasswordVisible = false;
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,7 @@ class _LoginBodyState extends State<LoginBody> {
                 ),
                 SizedBox(height: 4),
                 CustomTextField(
+                  validator: AppValidators.email,
                   controller: emailcontroller,
                   keyboardkey: TextInputType.emailAddress,
                   text: AppText.emailaddress,
@@ -72,12 +75,25 @@ class _LoginBodyState extends State<LoginBody> {
                 ),
                 SizedBox(height: 16),
                 PasswordAndForgetPassword(),
-
                 CustomTextField(
+                  obsuretext: isPasswordVisible,
+                  validator: AppValidators.password,
                   controller: passwordcontroller,
                   keyboardkey: TextInputType.visiblePassword,
                   text: AppText.passwordtext,
-                  prefixIcon: const Icon(Icons.lock_outline, size: 24),
+                  prefixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                    child: Icon(
+                      isPasswordVisible
+                          ? Icons.lock_open_outlined
+                          : Icons.lock_outline,
+                      size: 24.w,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 16),
                 CustomButtonApp(

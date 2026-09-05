@@ -4,6 +4,7 @@ import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/core/utils/app_validators.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,7 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
               ),
               SizedBox(height: 6),
               CustomTextField(
+                validator: AppValidators.password,
                 obsuretext: isobsuretext,
                 controller: passwordController,
                 keyboardkey: TextInputType.visiblePassword,
@@ -73,6 +75,7 @@ class _UpdatePasswordCardState extends State<UpdatePasswordCard> {
                 ),
               ),
               CustomTextField(
+                validator: AppValidators.password,
                 controller: confirmPasswordController,
                 keyboardkey: TextInputType.visiblePassword,
                 text: AppText.passwordtext,

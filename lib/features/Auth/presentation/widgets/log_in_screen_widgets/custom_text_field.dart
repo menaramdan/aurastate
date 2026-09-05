@@ -9,6 +9,8 @@ class CustomTextField extends StatelessWidget {
     required this.keyboardkey,
     required this.text,
     required this.prefixIcon,
+
+    required this.validator,
     this.obsuretext,
   });
   final TextEditingController controller;
@@ -16,9 +18,11 @@ class CustomTextField extends StatelessWidget {
   final String text;
   final Widget prefixIcon;
   final bool? obsuretext;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       obscureText: obsuretext ?? false,
       controller: controller,
       keyboardType: keyboardkey,

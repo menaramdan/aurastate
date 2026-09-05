@@ -4,6 +4,7 @@ import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/core/utils/app_validators.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/forget_password_widgets/remember_your_password.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
@@ -68,6 +69,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 ),
                 SizedBox(height: 4),
                 CustomTextField(
+                  validator: AppValidators.email,
                   controller: emailcontroller,
                   keyboardkey: TextInputType.emailAddress,
                   text: 'john@example.com',
