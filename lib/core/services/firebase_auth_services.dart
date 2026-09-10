@@ -1,6 +1,8 @@
 import 'package:aurastate/core/errors/failure.dart';
 import 'package:aurastate/core/errors/failure_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 abstract class FirebaseAuthServices {
   Future<User> createUserWithEmailAndPassword(
@@ -56,5 +58,31 @@ abstract class FirebaseAuthServices {
     } catch (e) {
       throw AppFailure(failureCode: FailureCode.unknown, message: e.toString());
     }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    await GoogleSignIn.instance.initialize(
+      serverClientId:
+          '75660776334-oeblt0fmbqevudvbkjp8qciludbige4l.apps.googleusercontent.com',
+    );
+    final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+        .authenticate();
+
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<UserCredential> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }

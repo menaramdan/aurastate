@@ -12,7 +12,20 @@
           "package_name": "com.example.aurastate"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "75660776334-stv8cg6qfqasj1eslaospofm4u11a21o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aurastate",
+            "certificate_hash": "3f3a381c7c5ae7052350dbfd72d66de9092e6f06"
+          }
+        },
+        {
+          "client_id": "75660776334-oeblt0fmbqevudvbkjp8qciludbige4l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCAaV4fyz_MQGQSN7vk25FVAznVUvMUKM8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75660776334-oeblt0fmbqevudvbkjp8qciludbige4l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "75660776334-23l6r1tm31ut7ii3ofbu20q78recmbvq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aurastate"
+              }
+            }
+          ]
         }
       }
     }
