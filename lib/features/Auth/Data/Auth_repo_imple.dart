@@ -35,14 +35,33 @@ class AuthRepoImple extends AuthRepo {
   }
 
   @override
-  Future<UserEntity> signwithFacebook() {
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> signwithFacebook() async {
+    try {
+      var user = await firebaseAuthServices.signInWithFacebook();
+      var userEnitiy = Usermodel.Firebaseuser(user.user!);
+      return Right(userEnitiy);
+    } on AppFailure catch (e) {
+      return Left(e);
+    } on Exception catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    }
   }
 
   @override
-  Future<UserEntity> signwithgoogle() {
-    // TODO: implement signwithgoogle
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> signwithgoogle() async {
+    try {
+      var user = await firebaseAuthServices.signInWithGoogle();
+      var userEnitiy = Usermodel.Firebaseuser(user.user!);
+      return Right(userEnitiy);
+    } on Exception catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    } on AppFailure catch (e) {
+      return Left(e);
+    }
   }
 
   @override
