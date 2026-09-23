@@ -9,4 +9,5 @@ abstract class AppIcons {
   static final String facebookicon = 'assets/svg/facebook_icon.svg';
   static final String icon = 'assets/svg/Icon.svg';
   static final String Blur = 'assets/svg/Blur.svg';
+  static final String return_ = 'assets/svg/return.svg';
 }

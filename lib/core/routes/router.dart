@@ -1,4 +1,7 @@
 import 'package:aurastate/core/routes/app_routes.dart';
+import 'package:aurastate/core/services/service_locator.dart';
+import 'package:aurastate/features/Auth/Domain/Auth_repo.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/signin_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/screens/OTP_%20Verification%20_Screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/Reset_Password_Screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/Success_Screen.dart';
@@ -9,6 +12,7 @@ import 'package:aurastate/features/splash/presentation/screens/Splash_screen.dar
 import 'package:aurastate/features/splash/presentation/screens/onboarding_screen.dart';
 import 'package:aurastate/features/splash/presentation/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -24,7 +28,10 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
-            child: const LogInScreen(),
+            child: BlocProvider(
+              create: (context) => SigninCubitCubit(getit<AuthRepo>()),
+              child: const LogInScreen(),
+            ),
             transitionDuration: const Duration(
               milliseconds: 800,
             ), // بطيئة عشان تلاحظها

@@ -10,4 +10,5 @@ abstract class AppImages {
   static final String phone = 'assets/svg/phone.svg';
   static final String backgroundemail = 'assets/images/Background_email.png';
   static final String succed = 'assets/images/succesed.png';
+  static final String waring = 'assets/images/warning.png';
 }

@@ -19,4 +19,5 @@ abstract class AppColors {
   static const darkcolor = Color(0xff0B1C30);
   static const coolLightGray = Color(0xffC5C6CF);
   static const colorofpinput = Color(0xff6B7280);
+  static const errorcolor = Color(0xff64748B);
 }
