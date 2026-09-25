@@ -1,0 +1,4 @@
+<resources>
+    <string name="facebook_app_id" translatable="false">2158293795088581</string>
+    <string name="facebook_client_token" translatable="false">cdb885770bdf45916b78a46c0b10e79f</string>
+</resources>

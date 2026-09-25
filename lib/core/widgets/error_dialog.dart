@@ -26,11 +26,13 @@ class ErrorDialog extends StatelessWidget {
           SizedBox(height: 16.h),
           Text(
             AppText.somethingwentwrong,
+            textAlign: TextAlign.center,
             style: AppTextStyle.playerDisplaysemibold20,
           ),
           8.verticalSpace,
           Text(
             massage,
+            textAlign: TextAlign.center,
             style: AppTextStyle.interRegular18.copyWith(
               color: AppColors.errorcolor,
             ),

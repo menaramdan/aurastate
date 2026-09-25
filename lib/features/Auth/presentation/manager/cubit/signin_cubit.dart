@@ -37,7 +37,7 @@ class SigninCubitCubit extends Cubit<SigninCubitState> {
 
   Future<void> signWithFacebook() async {
     emit(SigninCubitLoading());
-    var result = await authRepo.signwithgoogle();
+    var result = await authRepo.signwithFacebook();
     result.fold(
       ifLeft: (failure) {
         emit(SigninCubitFailure(failure));

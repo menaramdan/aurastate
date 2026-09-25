@@ -26,7 +26,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.push(AppRoutes.signupScreen);
+                context.push(AppRoutes.loginScreen);
               },
           ),
         ],

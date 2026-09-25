@@ -11,12 +11,14 @@ class CustomButtonApp extends StatelessWidget {
     required this.onPressed,
     required this.borderRadius,
     this.height,
+    this.child,
   });
   final void Function() onPressed;
   final String text;
   final Widget? svgPicture;
   final BorderRadiusGeometry borderRadius;
   final double? height;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,11 +33,14 @@ class CustomButtonApp extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              text,
-              style: AppTextStyle.interRegular14.copyWith(color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
+            child ??
+                Text(
+                  text,
+                  style: AppTextStyle.interRegular14.copyWith(
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
             SizedBox(width: 8),
             svgPicture ?? SizedBox(),
           ],

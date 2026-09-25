@@ -5,12 +5,14 @@ import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/utils/app_validators.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/signin_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/PasswordAndForgetPassword.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/asking_for_account.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/social_media_buttons.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/text_driver.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginBody extends StatefulWidget {
@@ -96,10 +98,28 @@ class _LoginBodyState extends State<LoginBody> {
                   ),
                 ),
                 SizedBox(height: 16),
-                CustomButtonApp(
-                  text: AppText.login,
-                  onPressed: () {},
-                  borderRadius: BorderRadiusGeometry.circular(60),
+                BlocBuilder<SigninCubitCubit, SigninCubitState>(
+                  builder: (context, state) {
+                    return CustomButtonApp(
+                      text: state is SigninCubitLoading ? '' : AppText.login,
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          context.read<SigninCubitCubit>().signin(
+                            emailcontroller.text,
+                            passwordcontroller.text,
+                          );
+                        }
+                      },
+                      borderRadius: BorderRadiusGeometry.circular(60),
+                      child: state is SigninCubitLoading
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : null,
+                    );
+                  },
                 ),
                 SizedBox(height: 24),
                 TextDriver(),
@@ -110,11 +130,17 @@ class _LoginBodyState extends State<LoginBody> {
                     SocialMediaButtons(
                       icon: SvgPicture.asset(AppIcons.googleicon),
                       text: AppText.google,
+                      onPressed: () {
+                        context.read<SigninCubitCubit>().signWithGoogle();
+                      },
                     ),
                     SizedBox(width: 16),
                     SocialMediaButtons(
                       icon: SvgPicture.asset(AppIcons.facebookicon),
                       text: AppText.facebook,
+                      onPressed: () {
+                        context.read<SigninCubitCubit>().signWithFacebook();
+                      },
                     ),
                   ],
                 ),
