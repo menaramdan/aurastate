@@ -90,4 +90,22 @@ class AuthRepoImple extends AuthRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> forgotPassword(String email) {
+    // TODO: implement forgotPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, void>> sendEmailVerification() {
+    // TODO: implement sendEmailVerification
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, void>> updatePassword(String password) {
+    // TODO: implement updatePassword
+    throw UnimplementedError();
+  }
 }

@@ -90,4 +90,9 @@ class FirebaseAuthServices {
 
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
+
+  Future<void> forgotPassword(String email) async {}
+
+  Future<void> sendEmailVerification() async {}
+  Future<void> updatePassword(String password) async {}
 }

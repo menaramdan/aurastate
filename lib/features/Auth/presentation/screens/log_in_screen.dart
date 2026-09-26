@@ -1,4 +1,3 @@
-import 'package:aurastate/core/functions/build_App_Bar.dart';
 import 'package:aurastate/core/widgets/error_dialog.dart';
 import 'package:aurastate/features/Auth/presentation/manager/cubit/signin_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/login_body.dart';
@@ -12,7 +11,7 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      // appBar: buildAppBar(context),
       body: BlocConsumer<SigninCubitCubit, SigninCubitState>(
         listener: (context, state) {
           if (state is SigninCubitFailure) {
