@@ -91,8 +91,36 @@ class FirebaseAuthServices {
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
-  Future<void> forgotPassword(String email) async {}
+  Future<void> forgotPassword(String email) async {
+    try {
+      // ignore: unused_local_variable
+      var result = await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: email,
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e.message ?? '');
+    }
+  }
 
-  Future<void> sendEmailVerification() async {}
-  Future<void> updatePassword(String password) async {}
+  Future<void> sendEmailVerification() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      await user?.reload();
+      if (user?.emailVerified == false) {
+        await user?.sendEmailVerification();
+      }
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> updatePassword(String password) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      await user?.updatePassword(password);
+    } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
+      print(e.message ?? '');
+    }
+  }
 }

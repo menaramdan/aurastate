@@ -92,20 +92,49 @@ class AuthRepoImple extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> forgotPassword(String email) {
-    // TODO: implement forgotPassword
-    throw UnimplementedError();
+  Future<Either<Failure, void>> forgotPassword(String email) async {
+    try {
+      // ignore: unused_local_variable
+      await firebaseAuthServices.forgotPassword(email);
+      return Right(null);
+    } on AppFailure catch (e) {
+      return Left(e);
+    } on Exception catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    }
   }
 
   @override
-  Future<Either<Failure, void>> sendEmailVerification() {
-    // TODO: implement sendEmailVerification
-    throw UnimplementedError();
+  Future<Either<Failure, void>> sendEmailVerification() async {
+    try {
+      await firebaseAuthServices.sendEmailVerification();
+      return Right(null);
+    } on AppFailure catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    } on Exception catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    }
   }
 
   @override
-  Future<Either<Failure, void>> updatePassword(String password) {
-    // TODO: implement updatePassword
-    throw UnimplementedError();
+  Future<Either<Failure, void>> updatePassword(String password) async {
+    try {
+      await firebaseAuthServices.updatePassword(password);
+      return Right(null);
+    } on Exception catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    } on AppFailure catch (e) {
+      return Left(
+        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
+      );
+    }
   }
 }
