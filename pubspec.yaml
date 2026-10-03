@@ -25,6 +25,7 @@ dependencies:
   google_sign_in: ^7.2.0
   flutter_facebook_auth: ^7.2.0
   get_it: ^9.3.0
+  open_mail_app: ^0.4.5
 
 dev_dependencies:
   flutter_test:

@@ -6,8 +6,10 @@ import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
+import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:aurastate/features/Auth/presentation/manager/cubit/ForgetandresetpasswordCubit/custom_app_button_1.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_widgets/email_widget.dart';
+import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_widgets/resend_link_email.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -87,8 +89,8 @@ class _OtpVerificationBodyState extends State<OtpVerificationBody>
                 children: [
                   Image.asset(
                     AppImages.backgroundemail,
-                    width: 64.w,
-                    height: 64.h,
+                    width: 75.w,
+                    height: 75.h,
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -109,7 +111,7 @@ class _OtpVerificationBodyState extends State<OtpVerificationBody>
                   SizedBox(height: 24.h),
                   EmailWidget(),
                   28.verticalSpace,
-                  CustomButtonApp1(
+                  CustomButtonApp(
                     text: AppText.openEmailApp,
                     onPressed: () {
                       context.push(AppRoutes.resetPasswordScreen);
@@ -128,12 +130,21 @@ class _OtpVerificationBodyState extends State<OtpVerificationBody>
                     borderRadius: BorderRadius.circular(16),
                     backgroundColor: const Color(0xFFD6E4FA),
                   ),
-                  // Text(
-                  //   AppText.resendcode,
-                  //   style: AppTextStyle.intersemibold12.copyWith(
-                  //     color: AppColors.primarycolor1,
-                  //   ),
-                  // ),
+                  49.verticalSpace,
+                  ResendLinkEmail(
+                    onTap: () {
+                      // Handle resend link action
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Be sure to check your spam or junk folder if you don\'t see it.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF9CA3AF), // لون رمادي فاتح
+                      fontSize: 12,
+                    ),
+                  ),
                 ],
               ),
             ),
