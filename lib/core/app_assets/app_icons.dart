@@ -10,4 +10,6 @@ abstract class AppIcons {
   static final String icon = 'assets/svg/Icon.svg';
   static final String Blur = 'assets/svg/Blur.svg';
   static final String return_ = 'assets/svg/return.svg';
+  static final String email = 'assets/svg/email1.svg';
+  static final String arrowing = 'assets/svg/arrowing.svg';
 }

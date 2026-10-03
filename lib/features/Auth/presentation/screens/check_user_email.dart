@@ -1,6 +1,6 @@
 import 'package:aurastate/core/app_assets/app_icons.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
-import 'package:aurastate/features/Auth/presentation/widgets/OTP_Verification_Screen_widgets/OTP_Verification_body.dart';
+import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_widgets/check_user_email_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';

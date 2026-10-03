@@ -22,7 +22,6 @@ abstract class AppText {
   static final String register = 'SIGN UP';
   static final String forgotPassword = 'Forgot Password?';
   static final String sendLink = 'Send Link';
-  static final String verification = 'verification';
   static final String verify = 'Verify';
   static final String resendcode = 'Resend Code';
   static final String resetPassword = 'Reset Password';
@@ -31,4 +30,6 @@ abstract class AppText {
   static final String updatePassword = 'UPDATE PASSWORD';
   static final String backToLogin = 'BACK TO LOGIN';
   static final String somethingwentwrong = 'Something went wrong';
+  static final String checkUserEmail = 'Check User Email';
+  static final String openEmailApp = 'Open Email App';
 }

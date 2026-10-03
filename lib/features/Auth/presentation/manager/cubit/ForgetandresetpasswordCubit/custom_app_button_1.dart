@@ -3,8 +3,8 @@ import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-class CustomButtonApp extends StatelessWidget {
-  const CustomButtonApp({
+class CustomButtonApp1 extends StatelessWidget {
+  const CustomButtonApp1({
     super.key,
     required this.text,
     this.svgPicture,
@@ -39,7 +39,7 @@ class CustomButtonApp extends StatelessWidget {
                 Text(
                   text,
                   style: AppTextStyle.interRegular14.copyWith(
-                    color: Colors.white,
+                    color: AppColors.primarycolor1,
                   ),
                   textAlign: TextAlign.center,
                 ),
