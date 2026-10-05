@@ -22,4 +22,19 @@ class ForgetandresetpasswordCubit extends Cubit<ForgetandresetpasswordState> {
       },
     );
   }
+
+  Future<void> sendEmailVerification() async {
+    emit(ForgetandresetpasswordLoading());
+    var result = await authRepo.sendEmailVerification();
+    result.fold(
+      ifLeft: (failure) {
+        emit(
+          ForgetandresetpasswordFailure(failure.message ?? 'An error occurred'),
+        );
+      },
+      ifRight: (value) {
+        emit(ForgetandresetpasswordSuccess());
+      },
+    );
+  }
 }

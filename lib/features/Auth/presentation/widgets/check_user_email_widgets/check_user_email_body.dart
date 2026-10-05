@@ -13,6 +13,7 @@ import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:open_mail_launcher/open_mail_launcher.dart';
 
 class OtpVerificationBody extends StatefulWidget {
   const OtpVerificationBody({super.key});
@@ -113,8 +114,12 @@ class _OtpVerificationBodyState extends State<OtpVerificationBody>
                   28.verticalSpace,
                   CustomButtonApp(
                     text: AppText.openEmailApp,
-                    onPressed: () {
-                      context.push(AppRoutes.resetPasswordScreen);
+                    onPressed: () async {
+                      final available =
+                          await OpenMailLauncher.isMailAppAvailable();
+                      if (available) {
+                        await OpenMailLauncher.openMailApp();
+                      }
                     },
                     borderRadius: BorderRadius.circular(16),
                     svgPicture: SvgPicture.asset(
@@ -126,7 +131,9 @@ class _OtpVerificationBodyState extends State<OtpVerificationBody>
                   12.verticalSpace,
                   CustomButtonApp1(
                     text: AppText.backToLogin,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(AppRoutes.loginScreen);
+                    },
                     borderRadius: BorderRadius.circular(16),
                     backgroundColor: const Color(0xFFD6E4FA),
                   ),
