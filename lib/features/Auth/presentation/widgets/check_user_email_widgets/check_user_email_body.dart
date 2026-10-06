@@ -15,14 +15,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_mail_launcher/open_mail_launcher.dart';
 
-class OtpVerificationBody extends StatefulWidget {
-  const OtpVerificationBody({super.key});
+class CheckYourEmailBody extends StatefulWidget {
+  const CheckYourEmailBody({super.key});
 
   @override
-  State<OtpVerificationBody> createState() => _OtpVerificationBodyState();
+  State<CheckYourEmailBody> createState() => _CheckYourEmailBodyState();
 }
 
-class _OtpVerificationBodyState extends State<OtpVerificationBody>
+class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _rotationAnimation;

@@ -1,8 +1,9 @@
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/services/service_locator.dart';
 import 'package:aurastate/features/Auth/Domain/Auth_repo.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/signin_cubit.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/signup_cubit_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/ForgetandresetpasswordCubit/forgetandresetpassword_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_in_cubit/signin_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_up_cubit/signup_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/screens/check_user_email.dart';
 import 'package:aurastate/features/Auth/presentation/screens/Reset_Password_Screen.dart';
 import 'package:aurastate/features/Auth/presentation/screens/Success_Screen.dart';
@@ -98,11 +99,14 @@ abstract class AppRouter {
 
       GoRoute(
         path: AppRoutes.forgetpassword,
-        builder: (context, state) => const ForgetPasswordScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => ForgetandresetpasswordCubit(getit<AuthRepo>()),
+          child: const ForgetPasswordScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.oTPVerificationScreen,
-        builder: (context, state) => const OtpverificationScreen(),
+        builder: (context, state) => const CheckYourEmailScreen(),
       ),
 
       GoRoute(

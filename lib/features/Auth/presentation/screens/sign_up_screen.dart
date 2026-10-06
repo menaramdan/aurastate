@@ -1,6 +1,6 @@
 import 'package:aurastate/core/functions/build_App_Bar.dart';
 import 'package:aurastate/core/widgets/error_dialog.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/signup_cubit_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_up_cubit/signup_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/sign_up_screen_widgets/sign_up_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

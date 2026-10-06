@@ -5,7 +5,7 @@ import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/utils/app_validators.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/signin_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/PasswordAndForgetPassword.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/asking_for_account.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/custom_text_field.dart';

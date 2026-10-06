@@ -3,7 +3,7 @@ import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/signup_cubit_cubit.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_up_cubit/signup_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/sign_up_screen_widgets/Already%20_have%20_an_account.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/sign_up_screen_widgets/TermsAndPrivacyCheckbox.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/sign_up_screen_widgets/custom_signup_fields.dart';
