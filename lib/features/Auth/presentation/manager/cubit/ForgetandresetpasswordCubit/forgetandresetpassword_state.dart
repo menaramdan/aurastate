@@ -10,6 +10,6 @@ final class ForgetandresetpasswordLoading extends ForgetandresetpasswordState {}
 final class ForgetandresetpasswordSuccess extends ForgetandresetpasswordState {}
 
 final class ForgetandresetpasswordFailure extends ForgetandresetpasswordState {
-  final String message;
-  ForgetandresetpasswordFailure(this.message);
+  final Failure failure;
+  ForgetandresetpasswordFailure(this.failure);
 }

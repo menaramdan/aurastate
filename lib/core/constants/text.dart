@@ -32,4 +32,5 @@ abstract class AppText {
   static final String somethingwentwrong = 'Something went wrong';
   static final String checkUserEmail = 'Check User Email';
   static final String openEmailApp = 'Open Email App';
+  static final String send = 'Send';
 }

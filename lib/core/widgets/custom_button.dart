@@ -38,7 +38,7 @@ class CustomButtonApp extends StatelessWidget {
             child ??
                 Text(
                   text,
-                  style: AppTextStyle.interRegular14.copyWith(
+                  style: AppTextStyle.interRegular16.copyWith(
                     color: Colors.white,
                   ),
                   textAlign: TextAlign.center,

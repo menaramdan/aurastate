@@ -35,15 +35,10 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
       duration: const Duration(milliseconds: 1200),
     );
 
-    _rotationAnimation =
-        Tween<double>(
-          begin: 0,
-          end: 2 * math.pi, // 360 درجة كاملة
-        ).animate(
-          CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic),
-        );
+    _rotationAnimation = Tween<double>(begin: 0, end: 2 * math.pi).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic),
+    );
 
-    // يشغل الأنيميشن أول ما الشاشة تظهر
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.forward();
     });
@@ -66,7 +61,7 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
             return Transform(
               alignment: Alignment.center,
               transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.0015) // perspective
+                ..setEntry(3, 2, 0.0015)
                 ..rotateY(_rotationAnimation.value),
               child: child,
             );
