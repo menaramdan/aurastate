@@ -16,8 +16,8 @@ import 'package:go_router/go_router.dart';
 import 'package:open_mail_launcher/open_mail_launcher.dart';
 
 class CheckYourEmailBody extends StatefulWidget {
-  const CheckYourEmailBody({super.key});
-
+  const CheckYourEmailBody({super.key, required this.email});
+  final String email;
   @override
   State<CheckYourEmailBody> createState() => _CheckYourEmailBodyState();
 }
@@ -105,7 +105,7 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
                     ),
                   ),
                   SizedBox(height: 24.h),
-                  EmailWidget(),
+                  EmailWidget(email: widget.email),
                   28.verticalSpace,
                   CustomButtonApp(
                     text: AppText.openEmailApp,

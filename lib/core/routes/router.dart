@@ -106,7 +106,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRoutes.oTPVerificationScreen,
-        builder: (context, state) => const CheckYourEmailScreen(),
+        builder: (context, state) {
+          final email = state.extra as String?;
+
+          return BlocProvider(
+            create: (context) => ForgetandresetpasswordCubit(getit<AuthRepo>()),
+            child: CheckYourEmailScreen(email: email),
+          );
+        },
       ),
 
       GoRoute(

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class OtpverificationScreen extends StatelessWidget {
-  const OtpverificationScreen({super.key});
-
+class CheckYourEmailScreen extends StatelessWidget {
+  const CheckYourEmailScreen({super.key, this.email});
+  final String? email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class OtpverificationScreen extends StatelessWidget {
 
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.p),
-        child: CheckYourEmailBody(),
+        child: CheckYourEmailBody(email: email ?? ''),
       ),
     );
   }

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 class EmailWidget extends StatelessWidget {
-  const EmailWidget({super.key});
-
+  const EmailWidget({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +20,7 @@ class EmailWidget extends StatelessWidget {
           SvgPicture.asset(AppIcons.email),
           const SizedBox(width: 12),
           Text(
-            'alexander.pierce@auraestate.com',
+            email,
             style: TextStyle(
               color: const Color(0xFF1D2A44),
               fontSize: 14,

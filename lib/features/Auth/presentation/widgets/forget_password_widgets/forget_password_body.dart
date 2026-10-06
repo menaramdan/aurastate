@@ -119,7 +119,10 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                         }
                         ErrorDialog(massage: errormassage);
                       } else if (state is ForgetandresetpasswordSuccess) {
-                        context.push(AppRoutes.oTPVerificationScreen);
+                        context.push(
+                          AppRoutes.oTPVerificationScreen,
+                          extra: emailcontroller.text,
+                        );
                       }
                     },
                     builder: (context, state) {
