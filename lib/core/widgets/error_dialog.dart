@@ -7,6 +7,7 @@ import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({super.key, required this.massage});
@@ -22,6 +23,7 @@ class ErrorDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          33.verticalSpace,
           Image.asset(AppImages.waring, width: 80.w, height: 80.h),
           SizedBox(height: 16.h),
           Text(
@@ -38,12 +40,16 @@ class ErrorDialog extends StatelessWidget {
             ),
           ),
           23.verticalSpace,
-          CustomButtonApp(
-            text: 'Try Again',
-            onPressed: () {},
-            borderRadius: BorderRadius.circular(16),
-            svgPicture: SvgPicture.asset(AppIcons.return_, width: 12.w),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.p),
+            child: CustomButtonApp(
+              text: 'Try Again',
+              onPressed: () => context.pop(),
+              borderRadius: BorderRadius.circular(16),
+              svgPicture: SvgPicture.asset(AppIcons.return_, width: 12.w),
+            ),
           ),
+          25.verticalSpace,
         ],
       ),
     );

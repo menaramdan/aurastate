@@ -94,7 +94,6 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                     listener: (context, state) {
                       if (state is ForgetandresetpasswordFailure) {
                         final failure = state.failure;
-
                         String errormassage;
                         switch (failure.failureCode) {
                           case FailureCode.network:
@@ -113,11 +112,20 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                             errormassage =
                                 'user not found. Please try again later.';
                             break;
+                          case FailureCode.invalidEmailOrPassword:
+                            errormassage =
+                                'Invalid email or password. Please try again.';
+                            break;
                           default:
                             errormassage =
                                 'Something went wrong. Please try again.';
                         }
-                        ErrorDialog(massage: errormassage);
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return ErrorDialog(massage: errormassage);
+                          },
+                        );
                       } else if (state is ForgetandresetpasswordSuccess) {
                         context.push(
                           AppRoutes.oTPVerificationScreen,
@@ -136,7 +144,6 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                                 .read<ForgetandresetpasswordCubit>()
                                 .forgetPassword(emailcontroller.text);
                           }
-                          context.push(AppRoutes.oTPVerificationScreen);
                         },
                         borderRadius: BorderRadius.circular(12),
                         height: 56.h,

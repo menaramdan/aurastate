@@ -44,16 +44,19 @@ class FirebaseAuthServices {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw AppFailure(
-          failureCode: FailureCode.validation,
+          failureCode: FailureCode.userNotFound,
           message: 'No user found for that email.',
         );
       } else if (e.code == 'wrong-password') {
         throw AppFailure(
-          failureCode: FailureCode.validation,
+          failureCode: FailureCode.wrongPassword,
           message: 'Wrong password provided for that user.',
         );
       } else {
-        throw AppFailure(failureCode: FailureCode.unknown, message: e.message);
+        throw AppFailure(
+          failureCode: FailureCode.invalidEmailOrPassword,
+          message: e.message,
+        );
       }
     } catch (e) {
       throw AppFailure(failureCode: FailureCode.unknown, message: e.toString());
@@ -98,7 +101,10 @@ class FirebaseAuthServices {
         email: email,
       );
     } on FirebaseAuthException catch (e) {
-      print(e.message ?? '');
+      throw AppFailure(
+        failureCode: FailureCode.invalidEmailOrPassword,
+        message: e.message,
+      );
     }
   }
 

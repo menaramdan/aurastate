@@ -1,3 +1,4 @@
+import 'package:aurastate/core/errors/failure_code.dart';
 import 'package:aurastate/core/widgets/error_dialog.dart';
 import 'package:aurastate/features/Auth/presentation/manager/cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/log_in_screen_widgets/login_body.dart';
@@ -15,7 +16,34 @@ class LogInScreen extends StatelessWidget {
       body: BlocConsumer<SigninCubitCubit, SigninCubitState>(
         listener: (context, state) {
           if (state is SigninCubitFailure) {
-            ErrorDialog(massage: state.failure.message ?? 'try later please');
+            final error = state.failure;
+
+            String errorMessage;
+            print('🔥 Failure Code: ${error.failureCode}');
+
+            switch (error.failureCode) {
+              case FailureCode.invalidEmail:
+                errorMessage = 'Invalid email address';
+                break;
+
+              case FailureCode.userNotFound:
+                errorMessage = 'User not found';
+                break;
+
+              case FailureCode.wrongPassword:
+                errorMessage = 'Wrong password';
+                break;
+              case FailureCode.invalidEmailOrPassword:
+                errorMessage = 'Invalid email or password';
+              default:
+                errorMessage = 'An error occurred';
+            }
+            showDialog(
+              context: context,
+              builder: (context) {
+                return ErrorDialog(massage: errorMessage);
+              },
+            );
           } else if (state is SigninCubitSuccess) {
             showDialog(
               context: context,

@@ -142,10 +142,7 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
                   const Text(
                     'Be sure to check your spam or junk folder if you don\'t see it.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF9CA3AF), // لون رمادي فاتح
-                      fontSize: 12,
-                    ),
+                    style: TextStyle(color: Color(0xFF9CA3AF), fontSize: 12),
                   ),
                 ],
               ),

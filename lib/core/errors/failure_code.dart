@@ -1,4 +1,6 @@
 enum FailureCode {
+  invalidEmail,
+  wrongPassword,
   network,
   timeout,
   unauthorized,
