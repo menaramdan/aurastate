@@ -5,7 +5,7 @@ abstract class AppRoutes {
   static const String loginScreen = '/loginscreen';
   static const String signupScreen = '/signupScreen';
   static const String forgetpassword = '/forgetpassword';
-  static const String oTPVerificationScreen = '/oTPVerificationScreen';
+  static const String checkYourEmail = '/checkYourEmail';
   static const String resetPasswordScreen = '/ResetPasswordScreen';
   static const String successScreen = '/SuccessScreen';
 }

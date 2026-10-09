@@ -105,7 +105,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: AppRoutes.oTPVerificationScreen,
+        path: AppRoutes.checkYourEmail,
         builder: (context, state) {
           final email = state.extra as String?;
 

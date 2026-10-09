@@ -2,15 +2,18 @@ import 'dart:math' as math;
 import 'package:aurastate/core/app_assets/app_icons.dart';
 import 'package:aurastate/core/app_assets/app_images.dart';
 import 'package:aurastate/core/constants/text.dart';
+import 'package:aurastate/core/functions/handle_Auth_State.dart';
 import 'package:aurastate/core/responsive/responsive_extensions.dart';
 import 'package:aurastate/core/routes/app_routes.dart';
 import 'package:aurastate/core/styles/app_colors.dart';
 import 'package:aurastate/core/styles/app_text_style.dart';
 import 'package:aurastate/core/widgets/custom_button.dart';
-import 'package:aurastate/features/Auth/presentation/manager/cubit/ForgetandresetpasswordCubit/custom_app_button_1.dart';
+import 'package:aurastate/core/widgets/custom_app_button_1.dart';
+import 'package:aurastate/features/Auth/presentation/manager/cubit/ForgetandresetpasswordCubit/forgetandresetpassword_cubit.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_widgets/email_widget.dart';
 import 'package:aurastate/features/Auth/presentation/widgets/check_user_email_widgets/resend_link_email.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_mail_launcher/open_mail_launcher.dart';
@@ -107,21 +110,43 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
                   SizedBox(height: 24.h),
                   EmailWidget(email: widget.email),
                   28.verticalSpace,
-                  CustomButtonApp(
-                    text: AppText.openEmailApp,
-                    onPressed: () async {
-                      final available =
-                          await OpenMailLauncher.isMailAppAvailable();
-                      if (available) {
-                        await OpenMailLauncher.openMailApp();
-                      }
+                  BlocConsumer<
+                    ForgetandresetpasswordCubit,
+                    ForgetandresetpasswordState
+                  >(
+                    listener: (context, state) {
+                      handleForgotPasswordState(state, context);
                     },
-                    borderRadius: BorderRadius.circular(16),
-                    svgPicture: SvgPicture.asset(
-                      AppIcons.arrowing,
-                      width: 18.w,
-                      height: 18.h,
-                    ),
+                    builder: (context, state) {
+                      return CustomButtonApp(
+                        text: State is ForgetandresetpasswordLoading
+                            ? ''
+                            : AppText.openEmailApp,
+                        onPressed: () async {
+                          final available =
+                              await OpenMailLauncher.isMailAppAvailable();
+                          if (available) {
+                            await OpenMailLauncher.openMailApp();
+                          }
+                        },
+                        borderRadius: BorderRadius.circular(16),
+                        svgPicture: SvgPicture.asset(
+                          AppIcons.arrowing,
+                          width: 18.w,
+                          height: 18.h,
+                        ),
+                        child: State is ForgetandresetpasswordLoading
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : null,
+                      );
+                    },
                   ),
                   12.verticalSpace,
                   CustomButtonApp1(
