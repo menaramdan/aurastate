@@ -27,6 +27,7 @@ void handleForgotPasswordState(
         break;
       case FailureCode.invalidEmailOrPassword:
         errorMassage = 'Invalid email , try later ';
+        break;
       default:
         errorMassage = 'An error occurred';
     }

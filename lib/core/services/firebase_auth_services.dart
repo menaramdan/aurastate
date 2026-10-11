@@ -1,5 +1,6 @@
 import 'package:aurastate/core/errors/failure.dart';
 import 'package:aurastate/core/errors/failure_code.dart';
+import 'package:aurastate/core/functions/error_handle.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -27,10 +28,10 @@ class FirebaseAuthServices {
           message: 'The email is already in use.',
         );
       } else {
-        throw AppFailure(failureCode: FailureCode.unknown, message: e.message);
+        throw handleError(e);
       }
     } catch (e) {
-      throw AppFailure(failureCode: FailureCode.unknown, message: e.toString());
+      throw handleError(e);
     }
   }
 
@@ -59,39 +60,52 @@ class FirebaseAuthServices {
         );
       }
     } catch (e) {
-      throw AppFailure(failureCode: FailureCode.unknown, message: e.toString());
+      throw handleError(e);
     }
   }
 
   Future<UserCredential> signInWithGoogle() async {
-    await GoogleSignIn.instance.initialize(
-      serverClientId:
-          '75660776334-oeblt0fmbqevudvbkjp8qciludbige4l.apps.googleusercontent.com',
-    );
-    final GoogleSignInAccount googleUser = await GoogleSignIn.instance
-        .authenticate();
+    try {
+      await GoogleSignIn.instance.initialize(
+        serverClientId:
+            '75660776334-oeblt0fmbqevudvbkjp8qciludbige4l.apps.googleusercontent.com',
+      );
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+          .authenticate();
 
-    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      idToken: googleAuth.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
 
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception catch (e) {
+      throw handleError(e);
+    }
   }
 
   Future<UserCredential> signInWithFacebook() async {
-    final LoginResult loginResult = await FacebookAuth.instance.login(
-      permissions: ['public_profile'],
-    );
-    if (loginResult.status != LoginStatus.success) {
-      print('فشل تسجيل الدخول باستخدام Facebook: ${loginResult.status}');
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login(
+        permissions: ['public_profile'],
+      );
+      if (loginResult.status != LoginStatus.success) {
+        throw AppFailure(
+          failureCode: FailureCode.unknown,
+          message: 'Facebook login failed: ${loginResult.status}',
+        );
+      }
+
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+      return await FirebaseAuth.instance.signInWithCredential(
+        facebookAuthCredential,
+      );
+    } on Exception catch (e) {
+      throw handleError(e);
     }
-
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
-
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
   Future<void> forgotPassword(String email) async {
@@ -111,22 +125,53 @@ class FirebaseAuthServices {
   Future<void> sendEmailVerification() async {
     try {
       final user = FirebaseAuth.instance.currentUser;
-      await user?.reload();
-      if (user?.emailVerified == false) {
-        await user?.sendEmailVerification();
+      if (user == null) {
+        throw AppFailure(
+          failureCode: FailureCode.userNotFound,
+          message: 'No user found for that email.',
+        );
       }
-    } on Exception catch (e) {
-      print(e.toString());
+      await user.reload();
+      if (user.emailVerified == false) {
+        await user.sendEmailVerification();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw AppFailure(
+          failureCode: FailureCode.userNotFound,
+          message: 'No user found for that email.',
+        );
+      } else {
+        throw AppFailure(
+          failureCode: FailureCode.invalidEmailOrPassword,
+          message: e.message,
+        );
+      }
     }
   }
 
   Future<void> updatePassword(String password) async {
     try {
       final user = FirebaseAuth.instance.currentUser;
-      await user?.updatePassword(password);
+      if (user == null) {
+        throw AppFailure(
+          failureCode: FailureCode.userNotFound,
+          message: 'No user found for that email.',
+        );
+      }
+      await user.updatePassword(password);
     } on FirebaseAuthException catch (e) {
-      // ignore: avoid_print
-      print(e.message ?? '');
+      if (e.code == 'user-not-found') {
+        throw AppFailure(
+          failureCode: FailureCode.userNotFound,
+          message: 'No user found for that email.',
+        );
+      } else {
+        throw AppFailure(
+          failureCode: FailureCode.invalidEmailOrPassword,
+          message: e.message,
+        );
+      }
     }
   }
 }

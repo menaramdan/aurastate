@@ -1,5 +1,5 @@
 import 'package:aurastate/core/errors/failure.dart';
-import 'package:aurastate/core/errors/failure_code.dart';
+import 'package:aurastate/core/functions/error_handle.dart';
 import 'package:aurastate/core/services/firebase_auth_services.dart';
 import 'package:aurastate/features/Auth/Data/models/user_model.dart';
 import 'package:aurastate/features/Auth/Domain/Auth_repo.dart';
@@ -26,11 +26,9 @@ class AuthRepoImple extends AuthRepo {
       );
       return Right(userEntity);
     } on AppFailure catch (e) {
-      return Left(e);
+      return Left(handleError(e));
     } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     }
   }
 
@@ -41,11 +39,9 @@ class AuthRepoImple extends AuthRepo {
       var userEnitiy = Usermodel.Firebaseuser(user.user!);
       return Right(userEnitiy);
     } on AppFailure catch (e) {
-      return Left(e);
+      return Left(handleError(e));
     } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     }
   }
 
@@ -55,12 +51,10 @@ class AuthRepoImple extends AuthRepo {
       var user = await firebaseAuthServices.signInWithGoogle();
       var userEnitiy = Usermodel.Firebaseuser(user.user!);
       return Right(userEnitiy);
-    } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
     } on AppFailure catch (e) {
-      return Left(e);
+      return Left(handleError(e));
+    } on Exception catch (e) {
+      return Left(handleError(e));
     }
   }
 
@@ -83,11 +77,9 @@ class AuthRepoImple extends AuthRepo {
       );
       return Right(userEnitiy);
     } on AppFailure catch (e) {
-      return Left(e);
+      return Left(handleError(e));
     } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     }
   }
 
@@ -98,11 +90,9 @@ class AuthRepoImple extends AuthRepo {
       await firebaseAuthServices.forgotPassword(email);
       return Right(null);
     } on AppFailure catch (e) {
-      return Left(e);
+      return Left(handleError(e));
     } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     }
   }
 
@@ -112,13 +102,9 @@ class AuthRepoImple extends AuthRepo {
       await firebaseAuthServices.sendEmailVerification();
       return Right(null);
     } on AppFailure catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
     }
   }
 
@@ -127,14 +113,10 @@ class AuthRepoImple extends AuthRepo {
     try {
       await firebaseAuthServices.updatePassword(password);
       return Right(null);
-    } on Exception catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
     } on AppFailure catch (e) {
-      return Left(
-        AppFailure(failureCode: FailureCode.unknown, message: e.toString()),
-      );
+      return Left(handleError(e));
+    } on Exception catch (e) {
+      return Left(handleError(e));
     }
   }
 }

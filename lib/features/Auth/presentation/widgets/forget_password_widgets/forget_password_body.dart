@@ -128,7 +128,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                         );
                       } else if (state is ForgetandresetpasswordSuccess) {
                         context.push(
-                          AppRoutes.oTPVerificationScreen,
+                          AppRoutes.checkYourEmail,
                           extra: emailcontroller.text,
                         );
                       }

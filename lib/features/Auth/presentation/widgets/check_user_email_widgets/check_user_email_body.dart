@@ -123,10 +123,17 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
                             ? ''
                             : AppText.openEmailApp,
                         onPressed: () async {
-                          final available =
+                          await context
+                              .read<ForgetandresetpasswordCubit>()
+                              .sendEmailVerification();
+
+                          final mailapp =
                               await OpenMailLauncher.isMailAppAvailable();
-                          if (available) {
+                          if (mailapp) {
                             await OpenMailLauncher.openMailApp();
+                          }
+                          if (mounted == false) {
+                            return;
                           }
                         },
                         borderRadius: BorderRadius.circular(16),
