@@ -123,10 +123,6 @@ class _CheckYourEmailBodyState extends State<CheckYourEmailBody>
                             ? ''
                             : AppText.openEmailApp,
                         onPressed: () async {
-                          await context
-                              .read<ForgetandresetpasswordCubit>()
-                              .sendEmailVerification();
-
                           final mailapp =
                               await OpenMailLauncher.isMailAppAvailable();
                           if (mailapp) {
